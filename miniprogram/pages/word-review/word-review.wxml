@@ -1,0 +1,45 @@
+<view class="word-review-page">
+  <view class="word-container" wx:if="{{words.length > 0}}">
+    <word-card
+      id="wordCard"
+      word="{{currentWord.word}}"
+      phonetic="{{currentWord.phonetic}}"
+      meaning="{{currentWord.meaning}}"
+      example="{{currentWord.example}}"
+      example-source="{{currentWord.exampleSource}}"
+      current="{{currentIndex + 1}}"
+      total="{{words.length}}"
+      bind:swipe="onSwipe"
+    ></word-card>
+  </view>
+
+  <view class="word-empty" wx:else>
+    <text class="empty-emoji">🎉</text>
+    <text class="empty-title">今日单词已完成</text>
+    <text class="empty-sub">明天继续加油</text>
+  </view>
+
+  <!-- 完成任务弹窗 -->
+  <view class="complete-modal" wx:if="{{showComplete}}">
+    <view class="modal-mask" bind:tap="dismissComplete"></view>
+    <view class="modal-content">
+      <text class="complete-emoji">✨</text>
+      <text class="complete-title">单词完成</text>
+      <view class="complete-stats">
+        <view class="stat-item">
+          <text class="stat-num">{{stats.known}}</text>
+          <text class="stat-label">认识</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-num">{{stats.fuzzy}}</text>
+          <text class="stat-label">模糊</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-num">{{stats.unknown}}</text>
+          <text class="stat-label">不认识</text>
+        </view>
+      </view>
+      <button class="done-btn" bind:tap="dismissComplete">完成</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<view class="word-card-wrapper">
+  <view
+    class="word-card {{animating ? 'card-animating card-' + swipeDir : ''}}"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+    style="transform: translateX({{offsetX}}px) rotate({{rotate}}deg);"
+  >
+    <!-- 不认识标识（左侧滑出） -->
+    <view class="swipe-hint left-hint {{swipeDir === 'left' ? 'hint-active' : ''}}">
+      <text>不认识</text>
+    </view>
+
+    <!-- 认识标识（右侧滑出） -->
+    <view class="swipe-hint right-hint {{swipeDir === 'right' ? 'hint-active' : ''}}">
+      <text>认识</text>
+    </view>
+
+    <!-- 主卡片内容 -->
+    <view class="card-content">
+      <text class="word-text">{{word}}</text>
+      <text class="phonetic-text" wx:if="{{phonetic}}">{{phonetic}}</text>
+      <view class="meaning-box" wx:if="{{showMeaning}}">
+        <text class="meaning-text">{{meaning}}</text>
+        <view class="example-box" wx:if="{{example}}">
+          <text class="example-text">"{{example}}"</text>
+          <text class="example-source" wx:if="{{exampleSource}}">— {{exampleSource}}</text>
+        </view>
+      </view>
+      <view class="tap-hint" wx:if="{{!showMeaning}}">
+        <text>↓ 下滑看释义</text>
+      </view>
+    </view>
+
+    <!-- 模糊标识（下滑出） -->
+    <view class="swipe-hint down-hint {{swipeDir === 'down' ? 'hint-active' : ''}}">
+      <text>模糊</text>
+    </view>
+  </view>
+
+  <!-- 底部提示栏 -->
+  <view class="gesture-guide" wx:if="{{!hasInteracted}}">
+    <view class="guide-item"><text>◀ 不认识</text></view>
+    <view class="guide-item"><text>模糊 ▼</text></view>
+    <view class="guide-item"><text>认识 ▶</text></view>
+  </view>
+
+  <!-- 进度 -->
+  <view class="word-progress" wx:if="{{total > 0}}">
+    <text>{{current}}/{{total}}</text>
+  </view>
+</view>

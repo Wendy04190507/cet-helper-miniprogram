@@ -1,0 +1,75 @@
+<view class="pomodoro-page">
+  <!-- 倒计时环 -->
+  <view class="timer-ring">
+    <view class="ring-bg"></view>
+    <canvas
+      type="2d"
+      id="ringCanvas"
+      class="ring-canvas"
+      style="width: 400rpx; height: 400rpx;"
+    ></canvas>
+    <view class="timer-display">
+      <text class="timer-minutes">{{minutes}}</text>
+      <text class="timer-colon">:</text>
+      <text class="timer-seconds">{{seconds}}</text>
+    </view>
+  </view>
+
+  <!-- 当前任务信息 -->
+  <view class="current-task" wx:if="{{currentTask}}">
+    <text class="task-icon">{{currentTask.icon}}</text>
+    <text class="task-name">{{currentTask.label}}</text>
+  </view>
+
+  <!-- 植物生长区 -->
+  <view class="plant-area">
+    <text class="plant-emoji">{{plantStage}}</text>
+    <text class="plant-label">{{plantMessage}}</text>
+  </view>
+
+  <!-- Study With Me -->
+  <view class="swm-section">
+    <text class="swm-title">🌙 此刻有 {{onlineCount}} 人在学</text>
+    <view class="swm-peers">
+      <view class="peer-item" wx:for="{{peers}}" wx:key="id">
+        <text class="peer-dot">●</text>
+        <text class="peer-label">{{item.name}} · {{item.task}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 控制按钮 -->
+  <view class="timer-controls">
+    <button class="ctrl-btn" wx:if="{{!isRunning && !isPaused}}" bind:tap="startTimer">
+      开始
+    </button>
+    <button class="ctrl-btn secondary" wx:if="{{isRunning}}" bind:tap="pauseTimer">
+      暂停
+    </button>
+    <button class="ctrl-btn" wx:if="{{isPaused}}" bind:tap="resumeTimer">
+      继续
+    </button>
+    <button class="ctrl-btn minimal" wx:if="{{isRunning || isPaused}}" bind:tap="skipTask">
+      跳过当前
+    </button>
+  </view>
+
+  <!-- 番茄钟时长选择 -->
+  <view class="duration-options" wx:if="{{!isRunning && !isPaused}}">
+    <text
+      class="dur-item {{duration === 15 ? 'active' : ''}}"
+      bind:tap="setDuration"
+      data-min="15"
+    >15min</text>
+    <text
+      class="dur-item {{duration === 25 ? 'active' : ''}}"
+      bind:tap="setDuration"
+      data-min="25"
+    >25min</text>
+    <text
+      class="dur-item {{duration === 45 ? 'active' : ''}}"
+      bind:tap="setDuration"
+      data-min="45"
+    >45min</text>
+  </view>
+</view>

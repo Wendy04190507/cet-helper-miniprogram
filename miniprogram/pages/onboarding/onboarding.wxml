@@ -1,0 +1,124 @@
+<view class="onboarding">
+  <!-- 进度指示器 -->
+  <view class="step-indicator">
+    <view
+      class="step-dot {{index <= currentStep ? 'active' : ''}}"
+      wx:for="{{4}}"
+      wx:key="*this"
+    ></view>
+  </view>
+
+  <!-- Step 0: 选择考试 -->
+  <view class="step-content" wx:if="{{currentStep === 0}}">
+    <text class="step-title">你准备考什么？</text>
+    <view class="option-grid">
+      <view
+        class="option-card {{examType === 'cet4' ? 'selected' : ''}}"
+        bind:tap="selectExam"
+        data-type="cet4"
+      >
+        <text class="option-emoji">📘</text>
+        <text class="option-label">四级</text>
+        <text class="option-desc">CET-4</text>
+      </view>
+      <view
+        class="option-card {{examType === 'cet6' ? 'selected' : ''}}"
+        bind:tap="selectExam"
+        data-type="cet6"
+      >
+        <text class="option-emoji">📕</text>
+        <text class="option-label">六级</text>
+        <text class="option-desc">CET-6</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Step 1: 设定考试日期 -->
+  <view class="step-content" wx:if="{{currentStep === 1}}">
+    <text class="step-title">考试日期</text>
+    <text class="step-desc">距离这天开始倒推每日任务</text>
+    <picker mode="date" value="{{examDate}}" start="{{minDate}}" bind:change="onDateChange">
+      <view class="date-picker-btn">
+        <text class="date-text">{{examDate || '选择日期'}}</text>
+        <text class="date-hint">默认：下一次统考日期</text>
+      </view>
+    </picker>
+    <text class="remaining-days" wx:if="{{remainingDays > 0}}">
+      距离考试还有 <text class="days-num">{{remainingDays}}</text> 天
+    </text>
+  </view>
+
+  <!-- Step 2: 模块自评 -->
+  <view class="step-content" wx:if="{{currentStep === 2}}">
+    <text class="step-title">自我评估</text>
+    <text class="step-desc">诚实打分，系统才能精准帮你</text>
+    <view class="module-eval">
+      <view class="eval-row" wx:for="{{modules}}" wx:key="key">
+        <view class="eval-header">
+          <text class="eval-emoji">{{item.icon}}</text>
+          <text class="eval-label">{{item.label}}</text>
+        </view>
+        <view class="star-row">
+          <view
+            class="star {{index < selfEval[item.key] ? 'active' : ''}}"
+            wx:for="{{5}}"
+            wx:key="*this"
+            bind:tap="setEval"
+            data-module="{{item.key}}"
+            data-score="{{index + 1}}"
+          >
+            <text>★</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 雷达图预览 -->
+    <view class="radar-preview" wx:if="{{hasEval}}">
+      <radar-chart data="{{radarData}}" width="{{300}}" height="{{280}}"></radar-chart>
+    </view>
+  </view>
+
+  <!-- Step 3: 每日用时 -->
+  <view class="step-content" wx:if="{{currentStep === 3}}">
+    <text class="step-title">每日可用时间</text>
+    <text class="step-desc">随时可调，不用有压力</text>
+    <view class="time-options">
+      <view
+        class="option-card {{dailyTime === '15min' ? 'selected' : ''}}"
+        bind:tap="setTime"
+        data-time="15min"
+      >
+        <text class="option-label">15 分钟</text>
+        <text class="option-desc">极简模式</text>
+      </view>
+      <view
+        class="option-card {{dailyTime === '30min' ? 'selected' : ''}}"
+        bind:tap="setTime"
+        data-time="30min"
+      >
+        <text class="option-label">30 分钟</text>
+        <text class="option-desc">推荐</text>
+      </view>
+      <view
+        class="option-card {{dailyTime === '60min' ? 'selected' : ''}}"
+        bind:tap="setTime"
+        data-time="60min"
+      >
+        <text class="option-label">1 小时</text>
+        <text class="option-desc">常规模式</text>
+      </view>
+    </view>
+    <button class="finish-btn" bind:tap="finishOnboarding">开始备考</button>
+  </view>
+
+  <!-- 下一步按钮 (Step 0-2 显示) -->
+  <button
+    class="next-btn"
+    wx:if="{{currentStep < 3}}"
+    bind:tap="nextStep"
+    disabled="{{!canNext}}"
+  >
+    {{currentStep === 2 ? '看结果' : '继续'}}
+  </button>
+</view>

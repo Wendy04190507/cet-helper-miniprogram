@@ -1,0 +1,67 @@
+<view class="home">
+  <!-- 今日计划为空时的引导 -->
+  <view class="empty-state" wx:if="{{!hasPlan}}">
+    <text class="empty-emoji">📚</text>
+    <text class="empty-title">还没有学习计划</text>
+    <text class="empty-desc">先做一个快速评估，为你生成专属计划</text>
+    <button class="empty-btn" bind:tap="goOnboarding">开始评估</button>
+    <button class="empty-btn minimal" bind:tap="startQuick" wx:if="{{canQuickStart}}">直接开始</button>
+  </view>
+
+  <!-- 有计划的正常首页 -->
+  <block wx:else>
+    <!-- 日期行 + 倒计时 -->
+    <view class="date-row">
+      <text class="date-text">{{dateDisplay}}</text>
+      <text class="countdown">距离考试还有 {{remainingDays}} 天</text>
+    </view>
+
+    <!-- 进度条 -->
+    <progress-bar
+      completed="{{completedCount}}"
+      total="{{totalTasks}}"
+      color="#1a1a1a"
+    ></progress-bar>
+
+    <!-- 今日任务卡片 -->
+    <view class="task-list">
+      <task-card
+        wx:for="{{tasks}}"
+        wx:key="id"
+        task-id="{{item.id}}"
+        icon="{{item.icon}}"
+        label="{{item.label}}"
+        duration="{{item.defaultDuration}}"
+        description="{{item.description}}"
+        completed="{{item.isCompleted}}"
+        bind:toggle="onTaskToggle"
+      ></task-card>
+    </view>
+
+    <!-- 开始学习按钮 -->
+    <button class="start-btn" bind:tap="startStudy">
+      开始今日学习
+    </button>
+
+    <!-- 模式切换 -->
+    <view class="mode-switch">
+      <text
+        class="mode-item {{!isMinimal ? 'active' : ''}}"
+        bind:tap="switchMode"
+        data-mode="normal"
+      >正常</text>
+      <text class="mode-divider">|</text>
+      <text
+        class="mode-item {{isMinimal ? 'active' : ''}}"
+        bind:tap="switchMode"
+        data-mode="minimal"
+      >极简</text>
+    </view>
+
+    <!-- 打卡日历 -->
+    <view class="section-header">
+      <text>打卡记录</text>
+    </view>
+    <checkin-calendar checkins="{{checkins}}"></checkin-calendar>
+  </block>
+</view>

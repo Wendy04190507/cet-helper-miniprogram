@@ -1,0 +1,38 @@
+/* app.wxss — 设计系统 */
+page {
+  --color-bg: #f8f8f8;
+  --color-surface: #ffffff;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #8e8e93;
+  --color-text-tertiary: #c7c7cc;
+  --color-accent: #1a1a1a;
+  --color-accent-soft: #f0f0f0;
+  --color-success: #34c759;
+  --color-warning: #ff9f0a;
+  --color-danger: #ff3b30;
+  --color-divider: #e5e5ea;
+
+  --font-xl: 36rpx;
+  --font-lg: 32rpx;
+  --font-md: 28rpx;
+  --font-sm: 24rpx;
+  --font-xs: 20rpx;
+
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+
+  --space-xs: 8rpx;
+  --space-sm: 16rpx;
+  --space-md: 24rpx;
+  --space-lg: 32rpx;
+  --space-xl: 48rpx;
+
+  --shadow-card: 0 2rpx 16rpx rgba(0,0,0,0.04);
+
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-size: var(--font-md);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,23 @@
+<view class="calendar-wrapper">
+  <view class="calendar-header">
+    <text>{{year}}年{{month}}月</text>
+  </view>
+  <view class="calendar-grid">
+    <view class="calendar-weekday" wx:for="{{weekdays}}" wx:key="*this">
+      <text>{{item}}</text>
+    </view>
+    <view
+      class="calendar-day {{day.empty ? 'day-empty' : ''}} {{day.isToday ? 'day-today' : ''}} {{day.checked ? 'day-checked' : ''}} {{day.wasChecked ? 'day-was-checked' : ''}}"
+      wx:for="{{days}}"
+      wx:key="index"
+    >
+      <text wx:if="{{!day.empty}}">{{day.num}}</text>
+    </view>
+  </view>
+
+  <!-- 连续打卡信息 -->
+  <view class="streak-info" wx:if="{{streak > 0}}">
+    <text class="streak-emoji">🔥</text>
+    <text class="streak-text">连续 {{streak}} 天了</text>
+  </view>
+</view>

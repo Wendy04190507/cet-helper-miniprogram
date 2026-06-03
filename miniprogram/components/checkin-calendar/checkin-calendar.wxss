@@ -1,0 +1,83 @@
+.calendar-wrapper {
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.calendar-header text {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4rpx;
+  text-align: center;
+}
+
+.calendar-weekday text {
+  font-size: var(--font-xs);
+  color: var(--color-text-tertiary);
+  display: block;
+  padding: var(--space-xs) 0;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.calendar-day text {
+  font-size: var(--font-sm);
+  color: var(--color-text-primary);
+}
+
+.day-empty {
+  visibility: hidden;
+}
+
+.day-today {
+  border: 2rpx solid var(--color-text-primary);
+}
+
+.day-checked {
+  background: var(--color-text-primary);
+}
+
+.day-checked text {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.day-was-checked {
+  background: var(--color-accent-soft);
+}
+
+.streak-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-sm);
+  gap: var(--space-xs);
+}
+
+.streak-emoji {
+  font-size: 32rpx;
+}
+
+.streak-text {
+  font-size: var(--font-md);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}

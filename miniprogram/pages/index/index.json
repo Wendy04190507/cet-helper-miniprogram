@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "task-card": "../../components/task-card/task-card",
+    "progress-bar": "../../components/progress-bar/progress-bar",
+    "checkin-calendar": "../../components/checkin-calendar/checkin-calendar"
+  },
+  "navigationBarTitleText": "CET 备考"
+}

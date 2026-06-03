@@ -1,0 +1,45 @@
+<view class="report-page">
+  <view class="report-card">
+    <text class="report-title">你这一周</text>
+
+    <view class="stats-grid">
+      <view class="stat-box">
+        <text class="stat-num">{{weeklyStats.studyDays}}</text>
+        <text class="stat-label">学习天数</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-num">{{weeklyStats.totalMinutes}}</text>
+        <text class="stat-label">总分钟</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-num">{{weeklyStats.newWords}}</text>
+        <text class="stat-label">新单词</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-num">{{weeklyStats.tasksDone}}</text>
+        <text class="stat-label">完成任务</text>
+      </view>
+    </view>
+
+    <!-- 模块改进 -->
+    <view class="improvement" wx:if="{{weeklyStats.improvements.length > 0}}">
+      <text class="section-label">模块进步</text>
+      <view class="impr-item" wx:for="{{weeklyStats.improvements}}" wx:key="module">
+        <text class="impr-module">{{item.module}}</text>
+        <text class="impr-change {{item.up ? 'up' : 'down'}}">
+          {{item.before}}% → {{item.after}}% {{item.up ? '↑' : '↓'}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI 鼓励语 -->
+  <view class="ai-message" wx:if="{{aiMessage}}">
+    <text class="ai-quote">"{{aiMessage}}"</text>
+  </view>
+
+  <!-- 分享按钮 -->
+  <button class="share-btn" open-type="share">
+    分享到聊天
+  </button>
+</view>

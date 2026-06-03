@@ -1,0 +1,18 @@
+<view
+  class="task-card {{completed ? 'task-completed' : ''}}"
+  bind:tap="onToggle"
+>
+  <view class="task-icon">{{icon}}</view>
+  <view class="task-body">
+    <view class="task-header">
+      <text class="task-label">{{label}}</text>
+      <text class="task-duration">{{duration}}min</text>
+    </view>
+    <text class="task-desc">{{description}}</text>
+    <text class="task-source" wx:if="{{source}}">{{source}}</text>
+  </view>
+  <view class="task-check {{completed ? 'check-done' : ''}}">
+    <text wx:if="{{completed}}">✓</text>
+    <view wx:else class="check-circle"></view>
+  </view>
+</view>

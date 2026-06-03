@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/onboarding/onboarding",
+    "pages/word-review/word-review",
+    "pages/pomodoro/pomodoro",
+    "pages/weekly-report/weekly-report",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "CET 备考",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f8f8f8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1a1a1a",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "今日",
+        "iconPath": "images/tab-today.png",
+        "selectedIconPath": "images/tab-today-active.png"
+      },
+      {
+        "pagePath": "pages/pomodoro/pomodoro",
+        "text": "学习",
+        "iconPath": "images/tab-study.png",
+        "selectedIconPath": "images/tab-study-active.png"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "我",
+        "iconPath": "images/tab-me.png",
+        "selectedIconPath": "images/tab-me-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

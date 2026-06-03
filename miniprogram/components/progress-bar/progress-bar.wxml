@@ -1,0 +1,12 @@
+<view class="progress-wrapper">
+  <view class="progress-track">
+    <view
+      class="progress-fill"
+      style="width: {{percent}}%; background: {{color}};"
+    ></view>
+  </view>
+  <view class="progress-label" wx:if="{{showLabel}}">
+    <text class="label-left">{{label || '今日进度'}}</text>
+    <text class="label-right">{{completed}}/{{total}}</text>
+  </view>
+</view>
