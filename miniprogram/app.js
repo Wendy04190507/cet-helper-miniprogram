@@ -7,7 +7,7 @@ App({
         wx.cloud.init({
           // ⚠️ 替换为你的云环境 ID（开通云开发后在控制台复制）
           // 格式示例：cet-helper-1gxxxx
-          env: '',
+          env: 'cloud1-d0guf7km850442629',
           traceUser: true,
         });
       } catch (e) {
