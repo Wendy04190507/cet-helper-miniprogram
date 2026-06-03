@@ -41,7 +41,7 @@
   },
   "appid": "wx82c57008b97170b4",
   "projectname": "cet-helper",
-  "libVersion": "3.3.4",
+  "libVersion": "3.16.1",
   "packOptions": {
     "ignore": [],
     "include": []
